@@ -1,0 +1,43 @@
+Start testing: Dec 06 21:53 CET
+----------------------------------------------------------
+1/1 Testing: AllTestsInGame
+1/1 Test: AllTestsInGame
+Command: "/Users/jannis/Desktop/Game/build/Game_Test"
+Directory: /Users/jannis/Desktop/Game/build
+"AllTestsInGame" start time: Dec 06 21:53 CET
+Output:
+----------------------------------------------------------
+Running main() from /tmp/googletest-20240731-4829-u2xmsk/googletest-1.15.2/googletest/src/gtest_main.cc
+[==========] Running 5 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from CharacterManagerTest
+[ RUN      ] CharacterManagerTest.LoadCharacterFromTestFile
+[       OK ] CharacterManagerTest.LoadCharacterFromTestFile (0 ms)
+[----------] 1 test from CharacterManagerTest (0 ms total)
+
+[----------] 2 tests from CharacterTest
+[ RUN      ] CharacterTest.InitializeEmptyCharacter
+[       OK ] CharacterTest.InitializeEmptyCharacter (0 ms)
+[ RUN      ] CharacterTest.InitializeFullCharacter
+[       OK ] CharacterTest.InitializeFullCharacter (0 ms)
+[----------] 2 tests from CharacterTest (0 ms total)
+
+[----------] 2 tests from StatsTest
+[ RUN      ] StatsTest.InitialiseEmptyStats
+[       OK ] StatsTest.InitialiseEmptyStats (0 ms)
+[ RUN      ] StatsTest.InitialiseFullStats
+[       OK ] StatsTest.InitialiseFullStats (0 ms)
+[----------] 2 tests from StatsTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 3 test suites ran. (0 ms total)
+[  PASSED  ] 5 tests.
+<end of output>
+Test time =   0.33 sec
+----------------------------------------------------------
+Test Passed.
+"AllTestsInGame" end time: Dec 06 21:53 CET
+"AllTestsInGame" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 06 21:53 CET

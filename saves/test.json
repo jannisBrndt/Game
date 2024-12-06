@@ -1,0 +1,8 @@
+{
+	"name" : "test",
+	"health" : 100,
+	"attackDamage" : 10,
+	"attackPower" : 5,
+	"armor" : 20,
+	"magicResistance" : 3
+}
