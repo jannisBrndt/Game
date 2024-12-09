@@ -22,4 +22,10 @@ class Stats {
 		int getAttackPower() const;
 		int getArmor() const;
 		int getMagicResistance() const;
+
+		void setHealth(int amount);
+		void setAttackDamage(int amount);
+		void setAttackPower(int amount);
+		void setArmor(int amount);
+		void setMagicResistance(int amount);
 };

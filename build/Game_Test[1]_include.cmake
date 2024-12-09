@@ -1,5 +1,0 @@
-if(EXISTS "/Users/jannis/Desktop/Game/build/Game_Test[1]_tests.cmake")
-  include("/Users/jannis/Desktop/Game/build/Game_Test[1]_tests.cmake")
-else()
-  add_test(Game_Test_NOT_BUILT Game_Test_NOT_BUILT)
-endif()

@@ -12,3 +12,19 @@ const std::string& Character::getName() const {
 const Stats& Character::getStats() const {
 	return stats;
 }
+
+void Character::setName(const std::string& name) {
+	this->name = name;
+}
+
+void Character::setStats(int health,
+			 int attackDamage,
+			 int attackPower,
+			 int armor,
+			 int magicResistance) {
+	stats.setHealth(health);
+	stats.setAttackDamage(attackDamage);
+	stats.setAttackPower(attackPower);
+	stats.setArmor(armor);
+	stats.setMagicResistance(magicResistance);
+}

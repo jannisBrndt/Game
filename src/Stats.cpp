@@ -25,3 +25,23 @@ int Stats::getArmor() const {
 int Stats::getMagicResistance() const {
 	return magicResistance;
 }
+
+void Stats::setHealth(int amount) {
+	this->health = amount;
+}
+
+void Stats::setAttackDamage(int amount) {
+	this->attackDamage = amount;
+}
+
+void Stats::setAttackPower(int amount) {
+	this->attackPower = amount;
+}
+
+void Stats::setArmor(int amount) {
+	this->armor = amount;
+}
+
+void Stats::setMagicResistance(int amount) {
+	this->magicResistance = amount;
+}

@@ -1,5 +1,0 @@
-/Users/jannis/Desktop/Game/build/CMakeFiles/Game.dir
-/Users/jannis/Desktop/Game/build/CMakeFiles/Game_Test.dir
-/Users/jannis/Desktop/Game/build/CMakeFiles/test.dir
-/Users/jannis/Desktop/Game/build/CMakeFiles/edit_cache.dir
-/Users/jannis/Desktop/Game/build/CMakeFiles/rebuild_cache.dir
