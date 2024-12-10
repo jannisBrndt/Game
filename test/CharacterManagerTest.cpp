@@ -4,32 +4,32 @@
 #include "../include/CharacterManager.h"
 
 TEST(CharacterManagerTest, SaveCharaterToFile) {
-	std::string filePath = "../saves/test.json";
+	std::string directory = "../saves";
 	
 	// create a test character with test data
-	auto testCharacter = std::make_shared<Character>("test", 100, 10, 5, 20, 3);
+	auto testCharacter = std::make_shared<Character>("test", Race::HUMAN, 100, 10, 5, 20, 3);
 	
 	// create a character manager for the testCharacter
 	CharacterManager manager(testCharacter);
 	
 	// save character to file
-	manager.saveCharacterToFile(testCharacter, filePath);
+	manager.saveCharacterToFile(testCharacter, directory);
 	
 	// create loaded character from file
-	Character loadedCharacter = manager.loadCharacterFromFile(filePath);
+	Character loadedCharacter = manager.loadCharacterFromFile(directory, testCharacter->getName());
 
 	EXPECT_EQ(loadedCharacter.getName(), "test");
 }
 
 TEST(CharacterManagerTest, LoadCharacterFromTestFile) {
 	
-	std::string filePath = "../saves/test.json";
+	std::string directory = "../saves";
 	
-	auto dummyCharacter = std::make_shared<Character>("dummy", 1, 1, 1, 1, 1);
+	auto dummyCharacter = std::make_shared<Character>("dummy", Race::HUMAN, 1, 1, 1, 1, 1);
 
 	CharacterManager manager(dummyCharacter);
 
-	Character loadedCharacter = manager.loadCharacterFromFile(filePath);
+	Character loadedCharacter = manager.loadCharacterFromFile(directory, "test");
 
 	EXPECT_EQ(loadedCharacter.getName(), "test");
 	EXPECT_EQ(loadedCharacter.getStats().getHealth(), 100);

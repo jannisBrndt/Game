@@ -1,0 +1,7 @@
+{
+    "health": 150,
+    "attackDamage": 20,
+    "attackPower": 10,
+    "armor": 10,
+    "magicResistance": 5
+}

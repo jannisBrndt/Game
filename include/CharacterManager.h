@@ -8,9 +8,11 @@ class CharacterManager {
 		std::shared_ptr<Character> character;
 
 	public:
-		CharacterManager(std::shared_ptr<Character> character);
+		CharacterManager() : character(std::make_shared<Character>()) {}
+		CharacterManager(std::shared_ptr<Character> character) : character(std::move(character)) {}
 		
-		Character loadCharacterFromFile(const std::string& filePath);
+		Character loadCharacterFromFile(const std::string& directory, const std::string& characterName);
 
-		void saveCharacterToFile(const std::shared_ptr<Character>& character, const std::string& filePath);
+		void saveCharacterToFile(const std::shared_ptr<Character>& character, const std::string& directory);
+
 };
