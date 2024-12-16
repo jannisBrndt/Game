@@ -45,3 +45,12 @@ void Stats::setArmor(int amount) {
 void Stats::setMagicResistance(int amount) {
 	this->magicResistance = amount;
 }
+
+std::ostream& operator<<(std::ostream& os, const Stats& stats) {
+	os << "\nHealth: " << stats.getHealth() << "\n";
+	os << "Attack Damage: " << stats.getAttackDamage() << "\n";
+	os << "Attack Power: " << stats.getAttackPower() << "\n";
+	os << "Armor: " << stats.getArmor() << "\n";
+	os << "Magic Resistance: " << stats.getMagicResistance() << "\n";
+	return os;
+}

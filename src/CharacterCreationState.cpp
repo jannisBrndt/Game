@@ -67,6 +67,7 @@ void CharacterCreationState::handleInput(StateManager& stateManager) {
 
 	Character newCharacter(name,
 			       race,
+			       Rank::RankType::IRON,
 			       raceStats.getHealth(),
 			       raceStats.getAttackDamage(),
 			       raceStats.getAttackPower(),

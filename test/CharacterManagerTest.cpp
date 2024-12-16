@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <gtest/gtest.h>
 #include <memory>
 #include <string>
@@ -5,9 +6,13 @@
 
 TEST(CharacterManagerTest, SaveCharaterToFile) {
 	std::string directory = "../saves";
+
+	if (!std::filesystem::exists(directory)) {
+		std::filesystem::create_directory(directory);
+	}
 	
 	// create a test character with test data
-	auto testCharacter = std::make_shared<Character>("test", Race::HUMAN, 100, 10, 5, 20, 3);
+	auto testCharacter = std::make_shared<Character>("test", Race::HUMAN, Rank::RankType::IRON, 100, 10, 5, 20, 3);
 	
 	// create a character manager for the testCharacter
 	CharacterManager manager(testCharacter);
@@ -25,7 +30,7 @@ TEST(CharacterManagerTest, LoadCharacterFromTestFile) {
 	
 	std::string directory = "../saves";
 	
-	auto dummyCharacter = std::make_shared<Character>("dummy", Race::HUMAN, 1, 1, 1, 1, 1);
+	auto dummyCharacter = std::make_shared<Character>("dummy", Race::HUMAN, Rank::RankType::IRON, 1, 1, 1, 1, 1);
 
 	CharacterManager manager(dummyCharacter);
 

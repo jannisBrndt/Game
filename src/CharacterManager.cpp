@@ -1,4 +1,5 @@
 #include "../include/CharacterManager.h"
+#include "../include/Rank.h"
 #include <filesystem>
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -7,51 +8,57 @@
 using json = nlohmann::json;
 
 Character CharacterManager::loadCharacterFromFile(const std::string& directory, const std::string& characterName) {
-
-Character character;
-character.setName(characterName);
-
-std::string filePath = directory + "/" + characterName + ".json";
-
-std::fstream file(filePath);
-
-if (!file.is_open()) {
-	std::cerr << "\033[31mError: Could not open character file!\033[0m\n";
-	return character;
-}
-
-try {
-	// parsing
-	json data = json::parse(file);
 	
-	// validating
-	if (!data.contains("health") ||
-	    !data.contains("attackDamage") ||
-	    !data.contains("attackPower") ||
-	    !data.contains("armor") ||
-	    !data.contains("magicResistance")) {
+	// default character, return if error
+	Character character;
+		
+	std::string filePath = directory + "/" + characterName + ".json";
 	
-		std::cerr << "\033[31mError: Invalid or missing fields in JSON!\033[0m\n";
+	std::fstream file(filePath);
+	if (!file.is_open()) {
+		std::cerr << "\033[31mError: Could not open character file!\033[0m\n";
 		return character;
 	}
-	
-	// giving option for default value
-	std::string name = data.value("name", "Unknown");
-	int health = data.value("health", 0);
-	int attackDamage = data.value("attackDamage", 0);
-	int attackPower = data.value("attackPower", 0);
-	int armor = data.value("armor", 0);
-	int magicResistance = data.value("magicResistance", 0);
-	
-	// character creation
-	character.setName(name);
-	character.setStats(health, attackDamage, attackPower, armor, magicResistance);
-	
-} catch (const json::parse_error& e) {
-	std::cerr << "\033[31mError parsing JSON data: " << e.what() << "\n";
-}
 
-return character;
+	try {
+		// parsing
+		json data;
+		file >> data;
+		
+		// validate JSON fields
+		if (!data.contains("name") ||
+		    !data.contains("race") ||
+		    !data.contains("rank") ||
+		    !data.contains("health") ||
+		    !data.contains("attackDamage") ||
+		    !data.contains("attackPower") ||
+		    !data.contains("armor") ||
+		    !data.contains("magicResistance")) {
+		
+			std::cerr << "\033[31mError: Invalid or missing fields in JSON!\033[0m\n";
+			return character;
+		}
+		
+		// Descerialization of chacharacter and giving option for default value
+		std::string name = data.value("name", "Unknown");
+		Race race = stringToRace(data["race"]);
+		Rank::RankType rank = Rank::fromString(data["rank"]);
+		int health = data.value("health", 0);
+		int attackDamage = data.value("attackDamage", 0);
+		int attackPower = data.value("attackPower", 0);
+		int armor = data.value("armor", 0);
+		int magicResistance = data.value("magicResistance", 0);
+		
+		// character creation
+		return Character(name, race, rank, health, attackDamage, attackPower, armor, magicResistance);
+	
+	} catch (const json::parse_error& e) {
+		std::cerr << "\033[31mError parsing JSON data: " << e.what() << "\n";
+	} catch (const std::exception& e) {
+		std::cerr << "\033[31mError: " << e.what() << "\033[0m\n";
+	}
+
+	return Character();
 }
 
 // take a const reference character because it is not modifying it
@@ -71,7 +78,7 @@ void CharacterManager::saveCharacterToFile(const std::shared_ptr<Character>& cha
 	// generate filePath
 	std::string filePath = directory + "/" + character->getName() + ".json";
 
-	// open the file for writing
+	// open the file for writing and delete previous content (trunc)
 	std::ofstream file(filePath, std::ofstream::trunc);
 
 	if (!file) {
@@ -86,7 +93,10 @@ void CharacterManager::saveCharacterToFile(const std::shared_ptr<Character>& cha
 		
 		// call stats once instead of everytime
 		const auto & stats = character->getStats();
+
 		data["name"] = character->getName();
+		data["race"] = raceToString(character->getRace());
+		data["rank"] = Rank::toString(character->getRank().getRank());
 		data["health"] = stats.getHealth();
 		data["attackDamage"] = stats.getAttackDamage();
 		data["attackPower"] = stats.getAttackPower();
@@ -106,4 +116,12 @@ void CharacterManager::saveCharacterToFile(const std::shared_ptr<Character>& cha
 		std::cerr << "\033[31m" << e.what() << "\033[0m\n";
 		return;
 	}
+}
+
+void CharacterManager::setCharacter(std::shared_ptr<Character> newCharacter) {
+	character = std::move(newCharacter);
+}
+
+std::shared_ptr<Character> CharacterManager::getCharacter() {
+	return character;
 }

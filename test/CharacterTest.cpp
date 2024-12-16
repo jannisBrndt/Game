@@ -5,7 +5,7 @@
 TEST(CharacterTest, InitializeEmptyCharacter) {
 
 	// Create empty character object
-	auto testCharacter = std::make_shared<Character>("", Race::HUMAN, 0, 0, 0, 0, 0);
+	auto testCharacter = std::make_shared<Character>("", Race::HUMAN, Rank::RankType::IRON, 0, 0, 0, 0, 0);
 
 	EXPECT_EQ(testCharacter->getName(), "");
 	EXPECT_EQ(testCharacter->getRace(), Race::HUMAN);
@@ -19,7 +19,7 @@ TEST(CharacterTest, InitializeEmptyCharacter) {
 TEST(CharacterTest, InitializeFullCharacter) {
 
 	// Create character object with random values
-	auto testCharacter = std::make_shared<Character>("test", Race::HUMAN, 1, 2, 3, 4, 5);
+	auto testCharacter = std::make_shared<Character>("test", Race::HUMAN, Rank::RankType::IRON, 1, 2, 3, 4, 5);
 
 	EXPECT_EQ(testCharacter->getName(), "test");
 	EXPECT_EQ(testCharacter->getRace(), Race::HUMAN);

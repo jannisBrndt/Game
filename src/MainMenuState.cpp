@@ -1,4 +1,5 @@
 #include "../include/MainMenuState.h"
+#include "../include/LoadCharacterState.h"
 #include "../include/CharacterCreationState.h"
 #include "../include/ExitMenuState.h"
 #include <iostream>
@@ -22,7 +23,8 @@ void MainMenuState::handleInput(StateManager& stateManager) {
 			break;
 		case 2:
 			// transition to character loading state
-			std::cout << "[Main Menu] Placeholder for transitioning to Character Loading State.\n";
+			std::cout << "\n[Main Menu] Transitioning to Loading Character";
+			stateManager.transitionTo(std::make_unique<LoadCharacterState>(characterManager));
 			break;
 		case 3:
 			// transition to quitting state

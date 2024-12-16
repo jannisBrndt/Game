@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Stats {
 	private:
 		int health;
@@ -28,4 +30,6 @@ class Stats {
 		void setAttackPower(int amount);
 		void setArmor(int amount);
 		void setMagicResistance(int amount);
+
+		friend std::ostream& operator<<(std::ostream& os, const Stats& stats);
 };

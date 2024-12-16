@@ -7,15 +7,6 @@ enum class Race {
 	BARBARIAN,
 };
 
-inline std::string raceToString(Race race) {
-	switch (race) {
-		case Race::HUMAN:
-			return "human";
-			break;
-		case Race::BARBARIAN:
-			return "barbarian";
-			break;
-		default:
-			return "unknown";
-	}
-}
+Race stringToRace(const std::string& raceStr);
+
+std::string raceToString(Race race);
